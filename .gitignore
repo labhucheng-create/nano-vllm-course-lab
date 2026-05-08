@@ -184,6 +184,11 @@ cython_debug/
 # Ruff stuff:
 .ruff_cache/
 
+# Local course scratch space
+tmp/
+output/
+labs/runs/
+
 # PyPI configuration file
 .pypirc
 
