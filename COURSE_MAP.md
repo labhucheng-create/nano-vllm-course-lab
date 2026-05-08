@@ -9,6 +9,12 @@
 
 ## Week 1
 
+### 第 0 讲：环境搭建与验证
+- 读：`pyproject.toml`、`README.md`、`example.py`、`bench.py`
+- 查：Python、CUDA、PyTorch、模型路径、GitHub SSH
+- 做：跑通最小 import、最小生成、Git push
+- 结论：必须动手验证；新电脑或进入实战前都要补这节
+
 ### 第 1 讲：推理框架全景
 - 读：`README.md`、`example.py`、`nanovllm/llm.py`
 - 画：一次 `LLM.generate()` 的完整调用链

@@ -17,6 +17,9 @@
 - 本节课不深挖哪些内容
 - 学完后的验收标准
 
+如果本节课需要跑代码、benchmark、模型下载、CUDA 或 GitHub 同步，必须先安排环境检查。
+新电脑第一次上课时，必须先完成 `course/lessons/lesson-00-environment.md`。
+
 每节课进行时必须做到：
 
 - 先建立整体图，再进入代码细节
@@ -29,6 +32,14 @@
 - 写一份课后总结到 `notes/`
 - 更新 `notes/progress.md`
 - 提交并推送到 GitHub
+
+## 环境搭建规则
+
+- 环境搭建是课程内容的一部分，不是临时杂活。
+- 进入任何实战、benchmark、性能优化前，必须确认环境可跑。
+- 如果环境没有搭好，先暂停源码深挖，补第 0 讲。
+- 环境检查至少包括 Python、CUDA、PyTorch、模型路径、`pip install -e .`、GitHub push。
+- 如果换电脑，先做第 0 讲，再继续当前进度。
 
 ## 深度控制
 
@@ -68,4 +79,4 @@ notes/lesson-XX-topic-summary.md
 - 不要随意修改 `nanovllm/` 源码，除非课程进入实战优化阶段。
 - 文档使用中文和 UTF-8 Markdown。
 - 每次课程总结后都要 commit，并推送到 `origin/main`。
-- 如果换电脑，先读 `README.md`、`HANDOFF.md`、本文件、`notes/progress.md`。
+- 如果换电脑，先读 `README.md`、`HANDOFF.md`、本文件、`notes/progress.md`，再完成第 0 讲环境验证。
