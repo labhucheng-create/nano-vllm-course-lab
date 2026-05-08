@@ -3,8 +3,29 @@
 ## 当前状态
 
 - 课程仓库已搭好
-- 课程地图已建立
-- 下一步按 `course/lessons/` 顺序推进
+- GitHub SSH 推送已配置完成
+- 第 1 讲：推理框架全景，已完成
+- 下一步：第 2 讲，请求生命周期与 `Sequence`
+
+## 已完成课程
+
+| 课程 | 主题 | 总结 |
+| --- | --- | --- |
+| 第 1 讲 | 推理框架全景 | `notes/lesson-01-overview-summary.md` |
+
+## 下一讲准备
+
+第 2 讲要重点阅读：
+
+- `nanovllm/engine/llm_engine.py`
+- `nanovllm/engine/sequence.py`
+- `nanovllm/engine/scheduler.py` 的状态流部分
+
+第 2 讲目标：
+
+- 理解一个请求从 WAITING 到 RUNNING 到 FINISHED 的过程
+- 理解 prompt token 和 generated token 如何一起存在 `Sequence.token_ids` 中
+- 手工跟踪一次请求生命周期
 
 ## 记录模板
 
