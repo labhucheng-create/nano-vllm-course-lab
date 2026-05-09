@@ -5,28 +5,30 @@
 - 课程仓库已搭好
 - GitHub SSH 推送已配置完成
 - 第 1 讲：推理框架全景，已完成
+- 第 2 讲：请求生命周期与 `Sequence`，已完成
 - 第 0 讲：环境搭建与验证，已加入课程地图
-- 下一步：如需跑代码先补第 0 讲；否则进入第 2 讲，请求生命周期与 `Sequence`
+- 下一步：如需跑代码先补第 0 讲；否则进入第 3 讲，调度器
 
 ## 已完成课程
 
 | 课程 | 主题 | 总结 |
 | --- | --- | --- |
 | 第 1 讲 | 推理框架全景 | `notes/lesson-01-overview-summary.md` |
+| 第 2 讲 | 请求生命周期与 Sequence | `notes/lesson-02-lifecycle-summary.md` |
 
 ## 下一讲准备
 
-第 2 讲要重点阅读：
+第 3 讲要重点阅读：
 
-- `nanovllm/engine/llm_engine.py`
+- `nanovllm/engine/scheduler.py`
 - `nanovllm/engine/sequence.py`
-- `nanovllm/engine/scheduler.py` 的状态流部分
+- `nanovllm/engine/block_manager.py` 的少量辅助逻辑
 
-第 2 讲目标：
+第 3 讲目标：
 
-- 理解一个请求从 WAITING 到 RUNNING 到 FINISHED 的过程
-- 理解 prompt token 和 generated token 如何一起存在 `Sequence.token_ids` 中
-- 手工跟踪一次请求生命周期
+- 系统理解 `Scheduler.schedule()`
+- 区分 prefill 调度分支和 decode 调度分支
+- 手工模拟 2 到 3 个请求的调度过程
 
 ## 记录模板
 
