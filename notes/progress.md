@@ -6,8 +6,9 @@
 - GitHub SSH 推送已配置完成
 - 第 1 讲：推理框架全景，已完成
 - 第 2 讲：请求生命周期与 `Sequence`，已完成
+- 第 3 讲：调度器 Scheduler，已完成
 - 第 0 讲：环境搭建与验证，已加入课程地图
-- 下一步：如需跑代码先补第 0 讲；否则进入第 3 讲，调度器
+- 下一步：如需跑代码先补第 0 讲；否则进入第 4 讲，KV cache 与 BlockManager
 
 ## 已完成课程
 
@@ -15,20 +16,21 @@
 | --- | --- | --- |
 | 第 1 讲 | 推理框架全景 | `notes/lesson-01-overview-summary.md` |
 | 第 2 讲 | 请求生命周期与 Sequence | `notes/lesson-02-lifecycle-summary.md` |
+| 第 3 讲 | 调度器 Scheduler | `notes/lesson-03-scheduler-summary.md` |
 
 ## 下一讲准备
 
-第 3 讲要重点阅读：
+第 4 讲要重点阅读：
 
-- `nanovllm/engine/scheduler.py`
+- `nanovllm/engine/block_manager.py`
 - `nanovllm/engine/sequence.py`
-- `nanovllm/engine/block_manager.py` 的少量辅助逻辑
+- `nanovllm/engine/scheduler.py` 的少量辅助逻辑
 
-第 3 讲目标：
+第 4 讲目标：
 
-- 系统理解 `Scheduler.schedule()`
-- 区分 prefill 调度分支和 decode 调度分支
-- 手工模拟 2 到 3 个请求的调度过程
+- 系统理解 KV cache block 的分配和复用
+- 理解 prefix cache 命中
+- 解释 `allocate()` / `deallocate()` / `can_allocate()` 的配合
 
 ## 记录模板
 
