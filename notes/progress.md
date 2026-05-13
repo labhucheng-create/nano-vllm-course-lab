@@ -2,12 +2,21 @@
 
 ## 当前状态
 - 课程仓库已搭好，GitHub SSH 推送已完成
-- 第 0 讲：环境搭建与验证，已纳入课程
 - 第 1 讲：推理框架全景，已完成
 - 第 2 讲：请求生命周期与 `Sequence`，已完成
 - 第 3 讲：调度器 `Scheduler`，已完成
 - 第 4 讲：KV cache 与 `BlockManager`，已完成
-- 下一步：如果要在新电脑继续实战，先补第 0 讲；否则进入第 5 讲，模型结构与 attention
+- 当前学习检查点：已经学到第 4 讲
+- 下一步：进入第 5 讲，模型结构与 attention
+- 如果换电脑继续学，先做第 0 讲的环境验证，再从第 5 讲接着往下走
+
+## 项目实战进度
+- 项目实战书已建立，入口见 `project/README.md`
+- 项目路线图见 `project/roadmap.md`
+- 当前默认从 Phase 0：环境与基线 开始
+- 课程和项目并行推进，但项目手册是主线
+- 你的个人课程进度镜像：第 4 讲已完成，下一步第 5 讲
+- 后续 benchmark 统一记录到 `labs/bench.md`
 
 ## 已完成课程
 | 课程 | 主题 | 总结 |
@@ -23,6 +32,7 @@
 - `nanovllm/models/qwen3.py`
 - `nanovllm/layers/attention.py`
 - `nanovllm/layers/rotary_embedding.py`
+- 如果先做项目实战，则先读 `project/phases/phase-00-environment.md`
 
 第 5 讲目标：
 
@@ -44,3 +54,10 @@
 - 最有价值的一个代码点
 - 还需要回头补的地方
 - 下一阶段目标
+
+## 项目阶段总结模板
+- 当前 Phase
+- 这一阶段做了什么
+- 产出了什么图 / 代码 / 数据
+- 哪些结论来自 benchmark
+- 下一阶段入口

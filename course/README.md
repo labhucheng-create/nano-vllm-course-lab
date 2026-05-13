@@ -23,3 +23,12 @@
 - 记录到 [notes/progress.md](../notes/progress.md)
 - Benchmark 记到 [labs/bench.md](../labs/bench.md)
 - 续学说明见 [HANDOFF.md](../HANDOFF.md)
+
+## 项目实战入口
+
+如果你想把课程学习直接落成项目，请继续读：
+
+- [project/README.md](../project/README.md)
+- [project/roadmap.md](../project/roadmap.md)
+
+课程负责“讲明白”，项目负责“做出来”。两边要一起看。

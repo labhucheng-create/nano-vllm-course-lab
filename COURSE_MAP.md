@@ -92,3 +92,19 @@
 - 画：优化前后的路径差异
 - 做：实现一个可测优化并记录结果
 - 结论：必须动手，且要保留对比
+
+## 项目实战路线
+
+课程负责把概念讲清楚，项目负责把概念落到可以投递的工程结果。
+
+| 项目阶段 | 对应课程 | 项目目标 | 主要产物 | 进入条件 |
+| --- | --- | --- | --- | --- |
+| Phase 0 | 第 0 讲 | 环境与基线 | 环境记录、`example.py`、`bench.py` 基线 | Linux / AutoDL、模型、依赖全部跑通 |
+| Phase 1 | 第 1-2 讲 | 框架主链路 | 调用链图、请求生命周期图 | 能讲清 `generate -> step -> schedule -> run -> postprocess` |
+| Phase 2 | 第 2-4 讲 | 请求状态与 KV cache | 状态推演表、block 复用图、prefix cache 图 | 能手推一条请求的缓存变化 |
+| Phase 3 | 第 5-6 讲 | LayerNorm / RMSNorm CUDA | baseline、kernel、correctness、microbenchmark | 算子能跑、能对、能测 |
+| Phase 4 | 第 7-10 讲 | 接入 nano-vLLM | 集成说明、端到端验证、路径图 | 算子已经挂回推理链路 |
+| Phase 5 | 第 11-12 讲 | Benchmark 与优化闭环 | 对照表、瓶颈分析、前后结果 | 有可复现数据和结论 |
+| Phase 6 | 全部阶段之后 | 简历与面试收口 | `resume-copy.md`、项目讲法、Q&A | 项目能被你讲清楚并写进简历 |
+
+项目实战的细则见 [project/README.md](./project/README.md) 和 [project/roadmap.md](./project/roadmap.md)。
