@@ -8,6 +8,10 @@ from nanovllm.engine.sequence import Sequence
 class Block:
 
     def __init__(self, block_id):
+        #block_id：block 编号
+        #ref_count：有多少条 seq 正在引用这个 block
+        #hash：这个 block 对应 token 内容的 hash
+        #token_ids：这个 block 对应的 token 内容
         self.block_id = block_id
         self.ref_count = 0
         self.hash = -1
@@ -26,9 +30,10 @@ class Block:
 class BlockManager:
 
     def __init__(self, num_blocks: int, block_size: int):
+        #初始化的时候会创建num_blocks个block对象，每一个block对象都有一个唯一的block_id，初始时ref_count为0，hash为-1，token_ids为空列表。
         self.block_size = block_size
         self.blocks: list[Block] = [Block(i) for i in range(num_blocks)]
-        self.hash_to_block_id: dict[int, int] = dict()
+        self.hash_to_block_id: dict[int, int] = dict() #某段 token 前缀的 hash -> 对应的 block id
         self.free_block_ids: deque[int] = deque(range(num_blocks))
         self.used_block_ids: set[int] = set()
 

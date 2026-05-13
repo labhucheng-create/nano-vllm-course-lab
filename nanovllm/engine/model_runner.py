@@ -101,25 +101,40 @@ class ModelRunner:
         torch.cuda.empty_cache()
 
     def allocate_kv_cache(self):
+        #先算这台 GPU 还能拿出多少内存给 KV cache
+        #根据模型层数、block size、head 数量，算出能放多少个 block
+        #申请一个大 tensor 作为总 KV cache
+        #把每一层 attention 的 k_cache、v_cache 指到这块总 tensor 的切片上
         config = self.config
         hf_config = config.hf_config
+
+        #下面这几行主要表示查看还有多少能分配出来的内存给到KV cache
         free, total = torch.cuda.mem_get_info()
         used = total - free
         peak = torch.cuda.memory_stats()["allocated_bytes.all.peak"]
         current = torch.cuda.memory_stats()["allocated_bytes.all.current"]
+
+        #如果是多卡 tensor parallel，KV heads 会分到每张卡上，因为这里world_size表示有多少张卡
         num_kv_heads = hf_config.num_key_value_heads // self.world_size
         head_dim = getattr(hf_config, "head_dim", hf_config.hidden_size // hf_config.num_attention_heads)
+
+        #计算block的字节数
         block_bytes = 2 * hf_config.num_hidden_layers * self.block_size * num_kv_heads * head_dim * hf_config.dtype.itemsize
+
+        #计算还有多少显存能进行分配
         config.num_kvcache_blocks = int(total * config.gpu_memory_utilization - used - peak + current) // block_bytes
         assert config.num_kvcache_blocks > 0
         self.kv_cache = torch.empty(2, hf_config.num_hidden_layers, config.num_kvcache_blocks, self.block_size, num_kv_heads, head_dim)
         layer_id = 0
+
+        #这里是遍历模型里面的模块，然后给含有k_cache和v_cache属性的模块分配KV cache的切片。每一层 attention 都会有一个 k_cache 和 v_cache，大小是 num_kvcache_blocks x block_size x num_kv_heads x head_dim
         for module in self.model.modules():
             if hasattr(module, "k_cache") and hasattr(module, "v_cache"):
                 module.k_cache = self.kv_cache[0, layer_id]
                 module.v_cache = self.kv_cache[1, layer_id]
                 layer_id += 1
 
+    #把多个 seq 的 block_table 拼成一个二维 tensor，供 attention kernel 查 block 用
     def prepare_block_tables(self, seqs: list[Sequence]):
         max_len = max(len(seq.block_table) for seq in seqs)
         block_tables = [seq.block_table + [-1] * (max_len - len(seq.block_table)) for seq in seqs]
@@ -150,6 +165,10 @@ class ModelRunner:
                 continue
             start_block = start // self.block_size
             end_block = (end + self.block_size - 1) // self.block_size
+
+            #找出这批 token 覆盖了哪些逻辑 block
+            #再把这些逻辑 block 映射成物理 block id
+            #最后把每个 token 精确映射到物理 cache 里的某个槽位
             for i in range(start_block, end_block):
                 slot_start = seq.block_table[i] * self.block_size
                 if i == start_block:
