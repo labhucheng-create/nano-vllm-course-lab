@@ -188,6 +188,7 @@ cython_debug/
 tmp/
 output/
 labs/runs/
+Qwen3-0.6B/
 
 # PyPI configuration file
 .pypirc
